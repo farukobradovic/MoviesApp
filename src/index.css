@@ -1,13 +1,288 @@
-body {
+*,
+*::after,
+*::before {
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+  font-size: 62.5%;
+  background: #ecf0f1;
+}
+
+.container {
+  max-width: 120rem;
+  margin: 0 auto;
+}
+
+::selection {
+  color: #fff;
+  background: #c0392b;
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  80% {
+    transform: translateX(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  80% {
+    transform: translateX(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+.u-center-text {
+  text-align: center;
+}
+
+.u-margin-bottom-big {
+  margin-bottom: 8rem;
+}
+
+.u-margin-bottom-medium {
+  margin-bottom: 4rem;
+}
+
+.u-margin-bottom-small {
+  margin-bottom: 2rem;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #333;
+  font-size: 1.6rem;
+}
+@media only screen and (max-width: 26em) {
+  body {
+    padding: 1rem;
+  }
+}
+
+.button {
+  padding: 1rem 1.2rem;
+  border: none;
+  color: #c0392b;
+  cursor: pointer;
+  border: 1px solid #c0392b;
+  outline: none;
+  width: 10rem;
+}
+.button:hover {
+  opacity: 0.8;
+  transition: 0.2;
+}
+
+.active {
+  color: #fff;
+  background-color: #c0392b;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+.card .img img {
+  width: 100%;
+  height: 30rem;
+  object-fit: cover;
+}
+.card .desc {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card .desc h3 {
+  margin-right: 2rem;
+}
+.card .desc a {
+  display: block;
+  text-decoration: none;
+  padding: 0.5rem 2rem;
+  background: #c0392b;
+  font-size: 1.2rem;
+  color: #fff;
+}
+.card .desc a:hover {
+  opacity: 0.8;
+  transition: 0.2s;
+}
+
+.content {
+  margin-top: 5rem;
+}
+.content .article {
+  margin-bottom: 10rem;
+}
+.content .article .p-bold {
+  font-weight: 500;
+}
+.content .img-article {
+  margin-bottom: 2rem;
+}
+.content .img-article img {
+  width: 100%;
+  height: 50rem;
+  object-fit: cover;
+}
+@media only screen and (max-width: 26em) {
+  .content .img-article img {
+    height: 35rem;
+  }
+}
+.content .video-article {
+  margin-bottom: 2rem;
+}
+.content .video-article iframe {
+  width: 100%;
+  height: 50rem;
+  object-fit: cover;
+}
+@media only screen and (max-width: 26em) {
+  .content .video-article iframe {
+    height: 35rem;
+  }
+}
+
+.buttons {
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+.search {
+  margin-bottom: 2rem;
+}
+.search input {
+  width: 100%;
+  border: none;
+  border: 1px solid #ecf0f1;
+  border-radius: 3px;
+  padding: 1rem;
+}
+.search input:focus {
+  outline: none;
+  border: 1px solid #c0392b;
+  transition: 0.2s;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 10rem;
+}
+@media only screen and (max-width: 26em) {
+  .main {
+    grid-template-columns: 1fr;
+  }
+}
+
+.margin-bottom {
+  margin-bottom: 2rem;
+}
+
+.icons {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+}
+.icons .gender {
+  margin-right: 1rem;
+}
+
+.linkButton {
+  margin-bottom: 2rem;
+}
+.linkButton a {
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.8rem 1rem;
+  border: none;
+  color: #c0392b;
+  cursor: pointer;
+  border: 1px solid #c0392b;
+  outline: none;
+  width: 10rem;
+  text-align: center;
+  margin: 0;
+  color: #fff;
+  font-size: 1.4rem;
+}
+
+.mainbox {
+  background-color: #ecf0f1;
+  margin: auto;
+  height: 600px;
+  width: 600px;
+  position: relative;
+}
+.mainbox .err {
+  color: #c0392b;
+  font-family: "Roboto", sans-serif;
+  font-size: 11rem;
+  position: absolute;
+  left: 20%;
+  top: 8%;
+}
+.mainbox .far {
+  position: absolute;
+  font-size: 8.5rem;
+  left: 42%;
+  top: 15%;
+  color: #c0392b;
+}
+.mainbox .err2 {
+  color: #c0392b;
+  font-family: "Roboto", sans-serif;
+  font-size: 11rem;
+  position: absolute;
+  left: 68%;
+  top: 8%;
+}
+.mainbox .msg {
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.6rem;
+  position: absolute;
+  left: 16%;
+  top: 45%;
+  width: 75%;
+}
+.mainbox a {
+  text-decoration: none;
+  color: #c0392b;
+}
+.mainbox a:hover {
+  text-decoration: underline;
 }

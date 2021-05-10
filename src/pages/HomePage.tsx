@@ -4,6 +4,7 @@ import Buttons from "../components/Buttons";
 import Card from "../components/Card";
 import CardShow from "../components/CardShow";
 import Search from "../components/Search";
+import Trending from "../components/Trending";
 import { IMovie, ITvShow } from "../models/models";
 import Spinner from "../spinner/Spinner";
 import { RootStoreContext } from "../stores/rootStore";
@@ -23,6 +24,9 @@ const HomePage = () => {
     fetchTvShowsBySearch,
     tvShowsFiltered,
     searchText,
+    fetchTrending,
+    loadingTrending,
+    trending,
   } = rootStore.commonStore;
   const [moviesClicked, setMoviesClicked] = useState(
     movieScreen ? true : false
@@ -32,6 +36,7 @@ const HomePage = () => {
     if (!movies || !shows) {
       fetchTopRatedMovies();
       fetchTopRatedTVShows();
+      fetchTrending();
     }
   }, []);
 
@@ -52,7 +57,7 @@ const HomePage = () => {
   }
 
   return (
-    <div className='container'>
+    <div className='container container-split'>
       <div className='content'>
         <Buttons
           moviesClicked={moviesClicked}
@@ -83,6 +88,10 @@ const HomePage = () => {
                 return <CardShow movie={movie} key={movie.id} />;
               })}
         </div>
+      </div>
+      <div className='content2'>
+        <h3>Trending</h3>
+        <Trending loading={loadingTrending} trending={trending} />
       </div>
     </div>
   );

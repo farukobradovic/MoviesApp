@@ -1,6 +1,15 @@
 import axios from "axios";
 import { action, makeObservable, observable, runInAction } from "mobx";
-import { IMovie, IMovieVideo, ITvShow, ITvShowVideo } from "../models/models";
+import {
+  ICredit,
+  IKeyword,
+  IMovie,
+  IMovieVideo,
+  IPerson,
+  ISocial,
+  ITvShow,
+  ITvShowVideo,
+} from "../models/models";
 import { RootStore } from "./rootStore";
 
 export default class MoviesStore {
@@ -28,6 +37,20 @@ export default class MoviesStore {
   @observable loadingMovieVideo = false;
   @observable tvShowVideo: ITvShowVideo[] | null = null;
   @observable loadingTvShowVideo = false;
+  @observable loadingTrending = false;
+  @observable trending: IMovie[] | null = null;
+  @observable loadingCredits = false;
+  @observable credits: ICredit[] | null = null;
+  @observable loadingKeywordsMovie = false;
+  @observable keywordsMovie: IKeyword[] | null = null;
+  @observable loadingSocialMovie = false;
+  @observable socialMovie: ISocial | null = null;
+  @observable loadingRecommendMovie = false;
+  @observable recommendMovies: IMovie[] | null = null;
+  @observable loadingPerson = false;
+  @observable person: IPerson | null = null;
+  @observable loadingPersonCredits = false;
+  @observable personCredits: IMovie[] | null = null;
 
   @action fetchTopRatedMovies = async () => {
     this.loadingMovies = true;
@@ -37,7 +60,7 @@ export default class MoviesStore {
       );
 
       runInAction(() => {
-        this.movies = movies.data.results.slice(0, 10);
+        this.movies = movies.data.results.slice(0, 12);
         this.loadingMovies = false;
       });
     } catch (err) {
@@ -56,7 +79,7 @@ export default class MoviesStore {
       );
 
       runInAction(() => {
-        this.shows = shows.data.results.slice(0, 10);
+        this.shows = shows.data.results.slice(0, 12);
         this.loadingShows = false;
       });
     } catch (err) {
@@ -92,7 +115,7 @@ export default class MoviesStore {
       var tvShow = await axios.get(
         `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.REACT_APP_API_KEY}`
       );
-
+      console.log(tvShow.data);
       runInAction(() => {
         this.tvShow = tvShow.data;
         this.loadingTvShow = false;
@@ -198,6 +221,129 @@ export default class MoviesStore {
         this.loadingTvShowVideo = false;
       });
       console.log(err);
+    }
+  };
+  @action fetchTrending = async () => {
+    this.loadingTrending = true;
+    try {
+      var trending = await axios.get(
+        `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_API_KEY}`
+      );
+      // console.log(trending.data.results);
+      runInAction(() => {
+        this.trending = trending.data.results.slice(0, 5);
+        this.loadingTrending = false;
+      });
+    } catch (err) {
+      runInAction(() => {
+        this.loadingTrending = false;
+      });
+      console.log(err);
+    }
+  };
+  @action fetchMovieCredits = async (id: any) => {
+    this.loadingCredits = true;
+    try {
+      const credits = await axios.get(
+        `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+      );
+
+      runInAction(() => {
+        this.credits = credits.data.cast.slice(0, 5);
+        this.loadingCredits = false;
+      });
+    } catch (err) {
+      runInAction(() => {
+        this.loadingCredits = false;
+      });
+      console.log(err);
+    }
+  };
+  @action fetchKeywordsMovie = async (id: string) => {
+    this.loadingKeywordsMovie = true;
+    try {
+      const keywords = await axios.get(
+        `https://api.themoviedb.org/3/movie/${id}/keywords?api_key=${process.env.REACT_APP_API_KEY}`
+      );
+      // console.log(keywords.data.keywords);
+      runInAction(() => {
+        this.keywordsMovie = keywords.data.keywords.slice(0, 10);
+        this.loadingKeywordsMovie = false;
+      });
+    } catch (err) {
+      runInAction(() => {
+        this.loadingKeywordsMovie = false;
+      });
+      console.log(err);
+    }
+  };
+  @action fetchSocialMovie = async (id: string) => {
+    this.loadingSocialMovie = true;
+    try {
+      const social = await axios.get(
+        `https://api.themoviedb.org/3/movie/${id}/external_ids?api_key=${process.env.REACT_APP_API_KEY}`
+      );
+      // console.log(social.data);
+      runInAction(() => {
+        this.socialMovie = social.data;
+        this.loadingSocialMovie = false;
+      });
+    } catch (err) {
+      runInAction(() => {
+        this.loadingSocialMovie = false;
+      });
+    }
+  };
+  @action fetchRecommendMovies = async (id: string) => {
+    this.loadingRecommendMovie = true;
+    try {
+      const recommends = await axios.get(
+        `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`
+      );
+      // console.log(recommends.data);
+
+      runInAction(() => {
+        this.loadingRecommendMovie = false;
+        this.recommendMovies = recommends.data.results.splice(0, 4);
+      });
+    } catch (err) {
+      runInAction(() => {
+        this.loadingRecommendMovie = false;
+      });
+    }
+  };
+  @action fetchPerson = async (id: string) => {
+    this.loadingPerson = true;
+    try {
+      const person = await axios.get(
+        `https://api.themoviedb.org/3/person/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+      );
+      // console.log(person.data);
+      runInAction(() => {
+        this.person = person.data;
+        this.loadingPerson = false;
+      });
+    } catch (err) {
+      runInAction(() => {
+        this.loadingPerson = false;
+      });
+    }
+  };
+  @action fetchPersonCredits = async (id: string) => {
+    this.loadingPersonCredits = true;
+    try {
+      const credits = await axios.get(
+        `https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+      );
+      // console.log(credits.data.cast.slice(0, 5));
+      runInAction(() => {
+        this.personCredits = credits.data.cast.slice(0, 5);
+        this.loadingPersonCredits = false;
+      });
+    } catch (err) {
+      runInAction(() => {
+        this.loadingPersonCredits = false;
+      });
     }
   };
 }

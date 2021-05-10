@@ -76,12 +76,23 @@ html {
   margin-bottom: 2rem;
 }
 
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-split {
+  display: flex;
+  position: relative;
+}
+
 body {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   line-height: 1.7;
   color: #333;
   font-size: 1.6rem;
+  letter-spacing: 1.1px;
 }
 @media only screen and (max-width: 26em) {
   body {
@@ -115,23 +126,36 @@ body {
 }
 .card .img img {
   width: 100%;
-  height: 30rem;
+  height: 25rem;
   object-fit: cover;
+  border-radius: 5px;
+}
+@media only screen and (max-width: 26em) {
+  .card .img img {
+    height: 15rem;
+  }
 }
 .card .desc {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+@media only screen and (max-width: 26em) {
+  .card .desc {
+    display: flex;
+    flex-direction: column;
+  }
+}
 .card .desc h3 {
   margin-right: 2rem;
+  font-size: 1.5rem;
 }
 .card .desc a {
   display: block;
   text-decoration: none;
   padding: 0.5rem 2rem;
   background: #c0392b;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #fff;
 }
 .card .desc a:hover {
@@ -141,6 +165,8 @@ body {
 
 .content {
   margin-top: 5rem;
+  flex: 80%;
+  margin-right: 2rem;
 }
 .content .article {
   margin-bottom: 10rem;
@@ -175,6 +201,45 @@ body {
   }
 }
 
+.content2 {
+  flex: 20%;
+  margin-top: 5rem;
+  border-left: 1px solid #d5dee0;
+  padding-left: 2rem;
+  margin-bottom: 5rem;
+}
+@media only screen and (max-width: 26em) {
+  .content2 {
+    display: none;
+  }
+}
+.content2 h3 {
+  margin-bottom: 2rem;
+}
+.content2 .trending {
+  display: flex;
+  flex-direction: column;
+}
+.content2 .trending .card {
+  line-height: 1.3;
+  margin-bottom: 2rem;
+}
+.content2 .trending .card img {
+  width: 100%;
+  height: 10rem;
+  border-radius: 10px;
+  object-fit: cover;
+}
+.content2 .trending .card a {
+  text-decoration: none;
+  color: #c0392b;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+.content2 .trending .card p {
+  font-size: 1.3rem;
+}
+
 .buttons {
   display: flex;
   margin-bottom: 2rem;
@@ -198,13 +263,13 @@ body {
 
 .main {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
   margin-bottom: 10rem;
 }
 @media only screen and (max-width: 26em) {
   .main {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -286,3 +351,587 @@ body {
 .mainbox a:hover {
   text-decoration: underline;
 }
+
+.container-full {
+  max-width: 100%;
+  position: relative;
+}
+.container-full .img img {
+  filter: brightness(15%);
+  width: 100%;
+  height: 65vh;
+  object-fit: cover;
+}
+@media only screen and (max-width: 100em) {
+  .container-full .img img {
+    height: 80vh;
+  }
+}
+@media only screen and (max-width: 26em) {
+  .container-full .img img {
+    height: 90vh;
+  }
+}
+.container-full .container-in {
+  max-width: 120rem;
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  width: 100%;
+  height: 100%;
+}
+@media only screen and (max-width: 26em) {
+  .container-full .container-in {
+    left: 0;
+    right: 0;
+    top: 0;
+    padding: 1rem;
+  }
+}
+.container-full .container-in .movie-info {
+  display: flex;
+  padding-top: 3rem;
+}
+@media only screen and (max-width: 26em) {
+  .container-full .container-in .movie-info {
+    padding: 0;
+    flex-direction: column;
+  }
+}
+.container-full .container-in .movie-info .img2 {
+  margin-right: 2rem;
+}
+.container-full .container-in .movie-info .img2 img {
+  width: 35rem;
+  height: 55vh;
+  object-fit: cover;
+}
+@media only screen and (max-width: 100em) {
+  .container-full .container-in .movie-info .img2 img {
+    width: 33rem;
+    height: 70vh;
+  }
+}
+@media only screen and (max-width: 26em) {
+  .container-full .container-in .movie-info .img2 img {
+    display: none;
+  }
+}
+.container-full .container-in .movie-info .desc .created-by {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  height: 3rem;
+}
+.container-full .container-in .movie-info .desc .created-by h3 {
+  font-weight: 400;
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  height: 100%;
+}
+.container-full .container-in .movie-info .desc .created-by .created-by-grid {
+  display: flex;
+  align-items: center;
+}
+.container-full
+  .container-in
+  .movie-info
+  .desc
+  .created-by
+  .created-by-grid
+  .card {
+  margin-right: 1rem;
+}
+.container-full
+  .container-in
+  .movie-info
+  .desc
+  .created-by
+  .created-by-grid
+  .card
+  img {
+  width: 3rem;
+  height: 3rem;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.container-full .container-in .movie-info .desc .tagline {
+  color: #878787;
+  margin-bottom: 1rem;
+}
+.container-full .container-in .movie-info .desc h1 {
+  color: white;
+  font-weight: 900;
+}
+.container-full .container-in .movie-info .desc p {
+  color: #fafafa;
+  margin-bottom: 2rem;
+}
+.container-full .container-in .movie-info .desc h3 {
+  color: #fafafa;
+}
+.container-full .container-in .movie-info .desc .circles {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+@media only screen and (max-width: 26em) {
+  .container-full .container-in .movie-info .desc .circles {
+    display: none;
+  }
+}
+.container-full .container-in .movie-info .desc .circles button {
+  margin-right: 2rem;
+  padding: 1.3rem;
+  background-color: transparent;
+  color: #fafafa;
+  border: 1px solid #fafafa;
+  cursor: pointer;
+  width: 5rem;
+}
+.container-full .container-in .movie-info .desc .circles button:hover {
+  color: #c0392b;
+  border: 1px solid #c0392b;
+  transition: ease 0.1s;
+}
+.container-full .container-in .movie-info .desc .circles button i {
+  font-size: 1.3rem;
+}
+.container-full .container-in .movie-info .desc .circles button:last-child {
+  width: 15rem;
+  border-radius: 0;
+}
+.container-full .container-in .movie-info .desc .circles button:last-child i {
+  margin-right: 1rem;
+}
+.container-full .container-in .movie-info .desc .button-back {
+  padding: 0.6rem;
+  background-color: transparent;
+  color: #fafafa;
+  border: 1px solid #fafafa;
+  text-decoration: none;
+  width: 10rem;
+  display: block;
+  text-align: center;
+  font-size: 1.3rem;
+}
+.container-full .container-in .movie-info .desc .button-back i {
+  margin-right: 1rem;
+}
+.container-full .container-in .movie-info .desc .button-back:hover {
+  color: #c0392b;
+  border: 1px solid #c0392b;
+  transition: ease 0.1s;
+}
+.container-full .container {
+  position: relative;
+  padding-bottom: 0;
+  border-bottom: 1px solid #d5dee0;
+}
+.container-full .container h3 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+.container-full .container .social-links {
+  padding-left: 1rem;
+}
+@media only screen and (max-width: 26em) {
+  .container-full .container .social-links {
+    text-align: center;
+  }
+}
+.container-full .container .social-links a {
+  text-decoration: none;
+  font-size: 2.5rem;
+  color: #333;
+  margin-right: 1rem;
+}
+.container-full .container .social-links a:hover {
+  transition: ease 0.1s;
+  color: #c0392b;
+}
+.container-full .container .split {
+  display: flex;
+}
+@media only screen and (max-width: 26em) {
+  .container-full .container .split {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.container-full .container .split .keywords {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+}
+@media only screen and (max-width: 26em) {
+  .container-full .container .split .keywords {
+    align-items: center;
+  }
+}
+.container-full .container .split .keywords .words .keyword {
+  font-size: 1.3rem;
+  background-color: #333;
+  color: #fafafa;
+  margin: 0.1rem;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  padding: 0.5rem 0.7rem;
+  border-radius: 3px;
+}
+.container-full .container .people {
+  display: flex;
+  align-items: center;
+}
+@media only screen and (max-width: 26em) {
+  .container-full .container .people {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 1rem;
+  }
+}
+.container-full .container .people .people-card {
+  margin-right: 1rem;
+  width: 15rem;
+  height: 30rem;
+  text-decoration: none;
+  color: #333;
+}
+@media only screen and (max-width: 26em) {
+  .container-full .container .people .people-card {
+    width: 100%;
+    height: 100%;
+  }
+}
+.container-full .container .people .people-card h4 {
+  font-size: 1.5rem;
+  padding: 0.2rem;
+}
+.container-full .container .people .people-card p {
+  font-size: 1.3rem;
+  padding: 0.2rem;
+  line-height: 1.2;
+}
+.container-full .container .people .people-card .img3 img {
+  object-fit: cover;
+  width: 15rem;
+  height: 20rem;
+  border-radius: 5px;
+}
+@media only screen and (max-width: 26em) {
+  .container-full .container .people .people-card .img3 img {
+    width: 8rem;
+    height: 10rem;
+  }
+}
+.container-full .container .people .people-card:hover {
+  opacity: 0.9;
+}
+.container-full .container .recommendations {
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+}
+@media only screen and (max-width: 26em) {
+  .container-full .container .recommendations {
+    flex-direction: column;
+    margin-bottom: 5rem;
+  }
+}
+.container-full .container .recommendations .card {
+  margin-right: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+@media only screen and (max-width: 26em) {
+  .container-full .container .recommendations .card {
+    width: 100%;
+    margin: 0;
+  }
+}
+.container-full .container .recommendations .card a {
+  text-decoration: none;
+  color: #333;
+}
+.container-full .container .recommendations .card a:hover {
+  color: #c0392b;
+}
+.container-full .container .recommendations .card .img5 img {
+  height: 13rem;
+  border-radius: 10px;
+}
+@media only screen and (max-width: 26em) {
+  .container-full .container .recommendations .card .img5 img {
+    width: 100%;
+    height: 15rem;
+    object-fit: cover;
+  }
+}
+.container-full .container .recommendations .card:last-child {
+  margin-right: 0;
+}
+.container-full .container .seasons {
+  margin-bottom: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+@media only screen and (max-width: 26em) {
+  .container-full .container .seasons {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 5rem;
+  }
+}
+.container-full .container .seasons .card {
+  margin-right: 2rem;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+.container-full .container .seasons .card p {
+  font-size: 1.3rem;
+}
+@media only screen and (max-width: 26em) {
+  .container-full .container .seasons .card {
+    width: 100%;
+    margin: 0;
+  }
+}
+.container-full .container .seasons .card a {
+  text-decoration: none;
+  color: #333;
+}
+.container-full .container .seasons .card a:hover {
+  color: #c0392b;
+}
+.container-full .container .seasons .card .img5 img {
+  height: 13rem;
+  border-radius: 10px;
+}
+@media only screen and (max-width: 26em) {
+  .container-full .container .seasons .card .img5 img {
+    width: 100%;
+    height: 15rem;
+    object-fit: cover;
+  }
+}
+.container-full .container .seasons .card:last-child {
+  margin-right: 0;
+}
+
+.footer {
+  text-align: center;
+  padding: 3rem;
+  background-color: #333;
+  color: #fafafa;
+}
+@media only screen and (max-width: 26em) {
+  .footer {
+    font-size: 1.3rem;
+  }
+}
+
+.actor {
+  display: flex;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+@media only screen and (max-width: 26em) {
+  .actor {
+    flex-direction: column;
+    margin-top: 0;
+  }
+}
+.actor .left {
+  flex: 25%;
+  display: flex;
+  flex-direction: column;
+}
+.actor .left button {
+  padding: 1rem;
+  background-color: #c0392b;
+  border: none;
+  text-align: center;
+  width: fit-content;
+  color: #fafafa;
+  border-radius: 5px;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+@media only screen and (max-width: 26em) {
+  .actor .left button {
+    display: none;
+  }
+}
+.actor .left h3 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+@media only screen and (max-width: 26em) {
+  .actor .left h3 {
+    display: none;
+  }
+}
+.actor .left p {
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.3;
+  margin-bottom: 2rem;
+}
+@media only screen and (max-width: 26em) {
+  .actor .left p {
+    display: none;
+  }
+}
+.actor .left p span {
+  font-weight: 400;
+  display: block;
+}
+.actor .left .img6 img {
+  width: 100%;
+  height: 45rem;
+  object-fit: cover;
+  border-radius: 10px;
+}
+@media only screen and (max-width: 26em) {
+  .actor .left .img6 img {
+    height: 25rem;
+  }
+}
+.actor .right {
+  flex: 75%;
+  margin-left: 2rem;
+}
+.actor .right .credits {
+  display: flex;
+  flex-direction: column;
+}
+.actor .right .credits .credits-container {
+  display: flex;
+  margin-top: 1rem;
+}
+@media only screen and (max-width: 26em) {
+  .actor .right .credits .credits-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+}
+.actor .right .credits .credits-container .credit {
+  margin-right: 1rem;
+  width: 100%;
+}
+.actor .right .credits .credits-container .credit .img7 img {
+  border-radius: 10px;
+  width: 100%;
+  object-fit: cover;
+  height: 20rem;
+}
+.actor .right .credits .credits-container .credit a {
+  text-decoration: none;
+  font-size: 1.3rem;
+  color: #333;
+  line-height: 1.3;
+}
+.actor .right .credits .credits-container .credit a:hover {
+  animation: ease 0.1s;
+  color: #c0392b;
+}
+.actor .right .heading-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+@media only screen and (max-width: 26em) {
+  .actor .right .heading-button h1 {
+    font-size: 2.3rem;
+  }
+}
+.actor .right .heading-button a {
+  padding: 0.6rem;
+  background-color: #c0392b;
+  color: #fafafa;
+  border: 1px solid #c0392b;
+  text-decoration: none;
+  width: 10rem;
+  display: block;
+  text-align: center;
+  font-size: 1.3rem;
+}
+@media only screen and (max-width: 26em) {
+  .actor .right .heading-button a {
+    padding: 0.3rem;
+  }
+}
+.actor .right .heading-button a i {
+  margin-right: 1rem;
+}
+.actor .right p {
+  margin-top: 1rem;
+  line-height: 1.3;
+  margin-bottom: 2rem;
+}
+
+.tooltip {
+  position: relative;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 100%;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  padding: 0 1rem;
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.youtube-link {
+  margin-right: 2rem;
+  padding: 0.9rem 1.3rem;
+  background-color: transparent;
+  color: #fafafa;
+  border: 1px solid #fafafa;
+  text-decoration: none;
+  cursor: pointer;
+  width: 5rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+.youtube-link:hover {
+  color: #c0392b;
+  border: 1px solid #c0392b;
+  transition: ease 0.1s;
+}
+.youtube-link i {
+  font-size: 1.3rem;
+}
+.youtube-link:last-child {
+  width: 15rem;
+  border-radius: 0;
+}
+.youtube-link:last-child i {
+  margin-right: 1rem;
+}
+
+/*
+  COLORS:
+  
+  Light green: #7ed56f
+  Medium green: #55c57a
+  Dark green: #28b485
+  
+  */

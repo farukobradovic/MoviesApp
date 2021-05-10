@@ -23,8 +23,12 @@ const CardShow: React.FC<IProps> = ({ movie }) => {
           />
         </div>
         <div className='desc'>
-          <h3>{name}</h3>
-          <Link to={`/shows/${id}`}>More info...</Link>
+          <div className='tooltip'>
+            <h3>{name.length < 17 ? name : `${name.substring(0, 17)}...`}</h3>
+            <span className='tooltiptext'>{name}</span>
+          </div>
+
+          <Link to={`/shows/${id}/${name}`}>More info...</Link>
         </div>
       </div>
     </>

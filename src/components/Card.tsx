@@ -23,8 +23,13 @@ const Card: React.FC<IProps> = ({ movie }) => {
           />
         </div>
         <div className='desc'>
-          <h3>{title}</h3>
-          <Link to={`/movies/${id}`}>More info...</Link>
+          <div className='tooltip'>
+            <h3>
+              {title.length < 17 ? title : `${title.substring(0, 17)}...`}
+            </h3>
+            <span className='tooltiptext'>{title}</span>
+          </div>
+          <Link to={`/movies/${id}/${movie.title}`}>More info...</Link>
         </div>
       </div>
     </>

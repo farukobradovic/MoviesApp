@@ -21,7 +21,7 @@ const Trending: React.FC<IProps> = ({ loading, trending }) => {
                 src={`http://image.tmdb.org/t/p/original${item.poster_path}`}
                 alt=''
               />
-              <Link to={`/movies/${item.id}/${item.title}`}>{item.title}</Link>
+              <Link to={`/movies/${item.id}`}>{item.title}</Link>
               <p>Rate: {item.vote_average}</p>
             </div>
           );

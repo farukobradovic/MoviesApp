@@ -26,9 +26,7 @@ const KnownFor: React.FC<IProps> = ({ credits }) => {
                     alt=''
                   />
                 </div>
-                <Link to={`/movies/${credit.id}/${credit.title}`}>
-                  {credit.title}
-                </Link>
+                <Link to={`/movies/${credit.id}`}>{credit.title}</Link>
               </div>
             );
           })}

@@ -31,13 +31,9 @@ const Recommendations: React.FC<IProps> = ({ movies, loading, type }) => {
                 />
               </div>
               {type === "movie" ? (
-                <Link to={`/movies/${movie.id}/${movie.title}`}>
-                  {movie.title}
-                </Link>
+                <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
               ) : (
-                <Link to={`/shows/${movie.id}/${movie.name}`}>
-                  {movie.name}
-                </Link>
+                <Link to={`/shows/${movie.id}`}>{movie.name}</Link>
               )}
             </div>
           );

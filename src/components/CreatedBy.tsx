@@ -15,7 +15,7 @@ const CreatedBy: React.FC<IProps> = ({ show }) => {
           return (
             <div className='created-by-grid' key={person.id}>
               <div className='card'>
-                <Link to={`/people/${person.id}/${person.name}`}>
+                <Link to={`/people/${person.id}`}>
                   <img
                     src={
                       person.profile_path

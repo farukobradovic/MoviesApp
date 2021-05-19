@@ -1,11 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { ITvShow } from "../models/models";
 import noimg from "../spinner/noimg.jpg";
 
 interface IProps {
   seasons: any;
+  id: any;
 }
-const Seasons: React.FC<IProps> = ({ seasons }) => {
+const Seasons: React.FC<IProps> = ({ seasons, id }) => {
   return (
     <div className='container'>
       <h3>Seasons</h3>
@@ -24,7 +26,11 @@ const Seasons: React.FC<IProps> = ({ seasons }) => {
                     alt='season'
                   />
                 </div>
-                <p style={{ fontSize: "1.6rem" }}>{season.name}</p>
+                <Link
+                  to={`/season/${id}/season_number/${season.season_number}`}
+                >
+                  {season.name}
+                </Link>
                 <p>{season.episode_count} episodes.</p>
               </div>
             );

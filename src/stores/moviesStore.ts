@@ -51,6 +51,8 @@ export default class MoviesStore {
   @observable person: IPerson | null = null;
   @observable loadingPersonCredits = false;
   @observable personCredits: IMovie[] | null = null;
+  @observable personActingLoading = false;
+  @observable personActing: any | null = null;
 
   @action fetchTopRatedMovies = async () => {
     this.loadingMovies = true;
@@ -75,7 +77,7 @@ export default class MoviesStore {
     this.loadingShows = true;
     try {
       var shows = await axios.get(
-        `https://api.themoviedb.org/3/tv/top_rated?api_key=${process.env.REACT_APP_API_KEY}`
+        `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.REACT_APP_API_KEY}`
       );
 
       runInAction(() => {
@@ -344,6 +346,22 @@ export default class MoviesStore {
       runInAction(() => {
         this.loadingPersonCredits = false;
       });
+    }
+  };
+
+  @action fetchPersonActing = async (id: string) => {
+    this.personActingLoading = true;
+    try {
+      const actings = await axios.get(
+        `https://api.themoviedb.org/3/person/${id}/combined_credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+      );
+      // console.log(actings.data);
+      runInAction(() => {
+        this.personActing = actings.data.cast;
+        this.personActingLoading = false;
+      });
+    } catch (err) {
+      runInAction(() => (this.personActingLoading = false));
     }
   };
 }

@@ -17,6 +17,8 @@ export default class ShowsStore {
   @observable socialShow: any | null = null;
   @observable loadingRecommendShow = false;
   @observable recommendShows: any | null = null;
+  @observable season: any | null = null;
+  @observable loadingSeason = false;
 
   @action fetchShowCredits = async (id: string) => {
     this.loadingCredits = true;
@@ -86,6 +88,23 @@ export default class ShowsStore {
     } catch (err) {
       runInAction(() => {
         this.loadingRecommendShow = false;
+      });
+    }
+  };
+  @action fetchSeason = async (id: any, season_number: any) => {
+    this.loadingSeason = true;
+    try {
+      const season = await axios.get(
+        `https://api.themoviedb.org/3/tv/${id}/season/${season_number}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+      );
+      console.log(season.data);
+      runInAction(() => {
+        this.season = season.data;
+        this.loadingSeason = false;
+      });
+    } catch (err) {
+      runInAction(() => {
+        this.loadingSeason = false;
       });
     }
   };

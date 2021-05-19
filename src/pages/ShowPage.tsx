@@ -142,7 +142,7 @@ const ShowPage: React.FC<RouteComponentProps<DetailParams>> = ({ match }) => {
             />
           </div>
           {tvShow && tvShow.seasons && tvShow.seasons.length > 0 && (
-            <Seasons seasons={tvShow.seasons} />
+            <Seasons seasons={tvShow.seasons} id={tvShow.id} />
           )}
         </div>
       )}

@@ -29,7 +29,7 @@ const Card: React.FC<IProps> = ({ movie }) => {
             </h3>
             <span className='tooltiptext'>{title}</span>
           </div>
-          <Link to={`/movies/${id}/${movie.title}`}>More info...</Link>
+          <Link to={`/movies/${id}`}>More info...</Link>
         </div>
       </div>
     </>

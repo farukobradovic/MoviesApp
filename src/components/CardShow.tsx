@@ -28,7 +28,7 @@ const CardShow: React.FC<IProps> = ({ movie }) => {
             <span className='tooltiptext'>{name}</span>
           </div>
 
-          <Link to={`/shows/${id}/${name}`}>More info...</Link>
+          <Link to={`/shows/${id}`}>More info...</Link>
         </div>
       </div>
     </>

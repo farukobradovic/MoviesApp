@@ -6,6 +6,7 @@ import Spinner from "../spinner/Spinner";
 import { observer } from "mobx-react-lite";
 import { getBirthday } from "../utils/helper";
 import KnownFor from "../components/KnownFor";
+import Actings from "../components/Actings";
 
 interface DetailParams {
   id: string;
@@ -21,14 +22,18 @@ const PersonPage: React.FC<RouteComponentProps<DetailParams>> = ({ match }) => {
     fetchPersonCredits,
     personCredits,
     loadingPersonCredits,
+    fetchPersonActing,
+    personActing,
+    personActingLoading,
   } = rootStore.commonStore;
 
   useEffect(() => {
     fetchPerson(id);
     fetchPersonCredits(id);
+    fetchPersonActing(id);
   }, [id]);
 
-  if (loadingPerson || loadingPersonCredits) {
+  if (loadingPerson || loadingPersonCredits || personActingLoading) {
     return <Spinner />;
   }
 
@@ -97,6 +102,7 @@ const PersonPage: React.FC<RouteComponentProps<DetailParams>> = ({ match }) => {
               <h3>Biography</h3>
               <p>{person.biography}</p>
               <KnownFor credits={personCredits!} />
+              {personActing && <Actings actings={personActing} />}
             </div>
           </div>
         </div>

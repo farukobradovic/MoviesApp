@@ -19,7 +19,7 @@ const People: React.FC<IProps> = ({ loading, cast }) => {
         cast.map((person: any) => {
           return (
             <Link
-              to={`/people/${person.id}/${person.name}`}
+              to={`/people/${person.id}`}
               className='people-card'
               key={person.id}
             >

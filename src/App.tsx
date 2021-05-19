@@ -7,6 +7,7 @@ import ShowPage from "./pages/ShowPage";
 import NotFound from "./pages/NotFound";
 import Footer from "./components/Footer";
 import PersonPage from "./pages/PersonPage";
+import SeasonPage from "./pages/SeasonPage";
 
 function App() {
   return (
@@ -15,9 +16,14 @@ function App() {
         render={() => (
           <Switch>
             <Route exact path='/' component={HomePage} />
-            <Route exact path='/movies/:id/:name' component={MoviePage} />
-            <Route exact path='/shows/:id/:name' component={ShowPage} />
-            <Route exact path='/people/:id/:name' component={PersonPage} />
+            <Route exact path='/movies/:id' component={MoviePage} />
+            <Route exact path='/shows/:id' component={ShowPage} />
+            <Route exact path='/people/:id' component={PersonPage} />
+            <Route
+              exact
+              path='/season/:id/season_number/:season_number'
+              component={SeasonPage}
+            />
             <Route path='*' component={NotFound} />
           </Switch>
         )}
